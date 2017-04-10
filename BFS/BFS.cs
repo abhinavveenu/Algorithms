@@ -22,34 +22,12 @@ namespace Pract
             //graph.CreatePathBewteenNodesByKey(1, 2);
             //graph.BFSInit(graph.Vertices[1]);
     /// </summary>
-    class BFS: Graph
+    public interface BFS
     {
-        public Queue<Node> BFSQueue { get; set;}
-        
-        public BFS()
-        {
-            BFSQueue = new Queue<Node>();
-        } 
 
-        public void BFSInit(Node StartNode)
-        {
-            BFSQueue.Enqueue(StartNode);
-            BFSSearchRecursion();
-        }
 
-        public void BFSSearchRecursion()
-        {
-            while (BFSQueue.Count != 0)
-            {
-                Node currentNode = BFSQueue.Dequeue();
-                Console.WriteLine(currentNode.Key);
-                currentNode.IsVisited = true;
-                for (int i = 0; i < currentNode.AdjacentNode.Count; i++)
-                {
-                    if(!currentNode.AdjacentNode[i].IsVisited)
-                    BFSQueue.Enqueue(currentNode.AdjacentNode[i]);
-                }
-            }
-        }
+        void BFSInit(Node StartNode);
+
+        void BFSSearchRecursion();
     }
 }
